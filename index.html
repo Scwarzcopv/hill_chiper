@@ -535,7 +535,7 @@
 
 		// Plaintext to keyCode
 		function funcPtoKeyCode(id) {
-			var p = $(id).val();
+			var p = $(id).val().toLowerCase();
 			var arr_p = [];
 			for (i = 0; i < p.length; i++) {
 				arr_p.push(parseInt(`${p[i]}`.charCodeAt(0)) - 97)
@@ -553,7 +553,7 @@
 				$('#matrix-A .row[name="row-matrix"]').each(function (i, obj) {
 					var arr_row = [];
 					$(this).find('.matrix-col'). each(function (j, obj_2) {
-						var valCol = $(this).find('input').val();
+						var valCol = $(this).find('input').val().toLowerCase();
 						arr_row.push(valCol);
 					})
 					arr_matrixA.push(arr_row);
