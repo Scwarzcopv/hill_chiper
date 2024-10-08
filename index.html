@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Hill Cipher">
+	<meta name="author" content="scwarzcopv">
+	<meta name="keywords" content="aplikasi, perhitungan, hill cipher, matrix, matrik, ordo 5x5, ordo 5x1">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="src/img/custom_avatars/logo.png"/>
+
+	<title>Hill Cipher</title>
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+	<link class="js-stylesheet" href="static/css/light.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="static/css/custom-style.css">
+</head>
+
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+	<!-- <audio src="src/sfx/fail.mp3" id="sfx_fail" class="d-none"></audio>
+	<audio src="src/sfx/yatta.mp3" id="sfx_yatta" class="d-none"></audio> -->
+	<main class="row d-flex align-items-center justify-content-center h-100 w-100 mx-auto">
+		<div class="row">
+			<div class="mx-auto container">
+				<div class="align-middle">
+
+					<div class="text-center mt-4" id="judol">
+						<h1 class="h2 fw-bold">Hill Cipher</h1>
+						<p class="lead">
+							<!-- <span class="fw-bold"></span> -->
+						</p>
+					</div>
+
+					<div class="card box-44 container" id="form_input">
+						<div class="card-body">
+							<div class="m-sm-4">
+								<div class="text-center mb-3">
+									<!-- <img src="src/img/custom_avatars/amba.jpeg" alt="Charles Hall"
+										class="img-fluid rounded-circle border border-success border-3" width="132" height="132" /> -->
+									<div class="mt-2 lead fw-bold">Enkripsi</div>
+								</div>
+								<section>
+									<div class="overflow-col mt-4" id="dragSpace">
+										<div class="" id="wrapperBoxes" style="padding: 0% 80px 0%;">
+											<!-- Matrix A -->
+											<div class="matrix d-flex align-items-center justify-content-center" id="matrix-A">
+												<div class="position-relative">
+													<div class="position-absolute top-50 translate-middle-y fw-bold text-start h2" style="left: -15%;">A =</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-top border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="3" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-2">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="17" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-3">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="4" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-4">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="2" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-5">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="9" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-top border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="4" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-2">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="15" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-3">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="16" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-4">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="19" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-5">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="21" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="5" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-2">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="7" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-3">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="1" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-4">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="14" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-5">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="6" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="10" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-2">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="8" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-3">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="3" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-4">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="11" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-5">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id="" maxlength="30" autocomplete="off"  data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'" value="12" style="width: 70px !important;"/>
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-bottom border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="13" style="width: 70px !important;" />
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-2">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="18" style="width: 70px !important;" />
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-3">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="20" style="width: 70px !important;" />
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-4">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="22" style="width: 70px !important;" />
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-5">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="input_jml" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="23" style="width: 70px !important;" />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-bottom border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Pemisah -->
+											<div class="text-center h1 my-2"><i class="fa-solid fa-xmark"></i></div>
+											<!-- Input P -->
+											<div class="d-flex align-items-center justify-content-center my-2">
+												<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id="plaintext"  maxlength="5" autocomplete="off" placeholder="Input Plaintext (Maks *5 karakter)" onkeydown="return /[a-z]/i.test(event.key)" style="width: 400px !important;" />
+											</div>
+											<!-- Matrix B -->
+											<div class="matrix d-flex align-items-center justify-content-center" id="matrix-B">
+												<div class="position-relative">
+													<div class="position-absolute top-50 translate-middle-y fw-bold text-start h2" style="left: -55%;">P =</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-top border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="0" style="width: 70px !important;" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-top border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="0" style="width: 70px !important;" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="0" style="width: 70px !important;" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="0" style="width: 70px !important;" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-bottom border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	data-inputmask="'alias': 'numeric', 'min': -999, 'max': 999, 'minOptional': false, 'groupSeparator': '.'"
+																	value="0" style="width: 70px !important;" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-bottom border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Btn Hitung -->
+											<div class="text-center my-4">
+												<!-- <div class="text-sm text-center user-select-none">Ket: <span class="text-danger">*</span> wajib diisi</div> -->
+												<button class="btn btn-lg btn-outline-primary fw-bold border border-3 border-primary m-1" type="button" name="submit" id="submit">Hasil <i class="fa-solid fa-angle-right"></i></button>
+												<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+											</div>
+											<!-- Hasil Matrix-->
+											<div class="d-flex align-items-center justify-content-center my-2">
+												<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id="hasilEnkripsi" placeholder="Hasil" style="width: 400px !important;" readonly />
+											</div>
+											<div class="matrix d-flex align-items-center justify-content-center" id="matrix-hasil">
+												<div class="position-relative">
+													<div class="position-absolute top-50 translate-middle-y fw-bold text-start h2" style="left: -39%;">Hasil =</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-top border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	value="0" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-top border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	value="0" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	value="0" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	value="0" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-secondary border-4 user-select-none h-100">&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+													<div class="row flex-nowrap" name="row-matrix">
+														<div class="col-auto px-1">
+															<div class="border-start border-bottom border-secondary border-4 user-select-none h-100">
+																&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+														<div class="col-auto px-1 py-1 matrix-col" name="matrix-col-1">
+															<div class="d-flex align-items-center">
+																<input class="button-55 button-55-focus w-100 py-1 text-center" type="text" name="" id=""
+																	maxlength="30" autocomplete="off"
+																	value="0" readonly />
+															</div>
+														</div>
+														<div class="col-auto px-1">
+															<div class="border-end border-bottom border-secondary border-4 user-select-none h-100">
+																&nbsp;&nbsp;&nbsp;
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="fixed-bottom">
+		<div class="position-absolute bottom-0 start-50 translate-middle-x">
+			<button class="btn btn-lg btn-success fw-bold border border-3 border-success d-none mb-md-2" type="button" name="submit2" id="submit2" disabled>Confirm <i class="fa-solid fa-angles-right"></i></button>
+		</div>
+	</div>
+
+	<script src="static/js/app.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+	<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" integrity="sha512-xq+0+dRhI6SZOh+lDnMJEju2p2YPINflJLcYrRAsIMaXnJi6/V3lppCMCYsB2MLeF2E93r+fVo0MioY90pNzpw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js" integrity="sha512-+ol0Tck+iZU3Wj7lJSB9/7iVlEwvVbURRJTUQ9QmjVFF8tnrltnwuafT/eu1e4GTOgbCri6YLJkvUS8YIr4U2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- MD5 -->
+	 <script src="src/jQuery-MD5/jquery.md5.js"></script>
+
+	<!-- Chart js -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+	<!-- Draggable -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/utils/Draggable.min.js?r=clKd"></script>
+	<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js"></script>
+
+	<!-- HorizontallScroll -->
+	<script src="https://cdn.jsdelivr.net/npm/horizontal-scroll@1.1.0/dist/index.min.js"></script>
+
+	<!-- Jquery -->
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js'></script>
+
+	<!-- Smooth Scroll -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.5.1/SmoothScroll.min.js"></script> -->
+	
+	<!-- Custom -->
+	<script src="static/js/customapp.js"></script>
+	
+	<script>
+		// Scrol to change val
+		function funcBtnOperator() {
+			var name = $('[name="btn_operatorVal"]');
+			var timeoutId, interval;
+
+			// MouseDown
+			name.on('mousedown', function () {
+				var id = $(this).attr('data-id');
+				var operator = $(this).attr('data-operator');
+				var val = parseInt($('#' + id).val());
+				var operaotorVar = (operator == '-') ? (-1) : ((operator == '+') ? (+1) : (0));
+				$("#" + id).val(val + operaotorVar);
+				
+				timeoutId = setTimeout(function(){
+					interval = setInterval(() => {
+						val += operaotorVar;
+						$("#" + id).val(val);
+					}, 100);
+				}, 500);
+
+			}).on('mouseup mouseleave', function () {
+				clearInterval(interval);
+				clearTimeout(timeoutId);
+			});
+
+			// MouseWheel
+			$('input[name="input_jml"]').bind('mousewheel', function (e) {
+				var val = parseInt($(this).val());
+				$(this).val((e.originalEvent.wheelDelta / 120 > 0) ? (val + 1) : (val - 1));
+
+				// Disable Scroll Y
+				var scrollTo = null;
+				if (e.type == 'mousewheel') {
+					scrollTo = (e.originalEvent.wheelDelta * -1);
+				}
+				else if (e.type == 'DOMMouseScroll') {
+					scrollTo = 40 * e.originalEvent.detail;
+				}
+				if (scrollTo) {
+					e.preventDefault();
+					$(this).scrollTop(scrollTo + $(this).scrollTop());
+				}
+			});
+		}
+
+		// Plaintext to keyCode
+		function funcPtoKeyCode(id) {
+			var p = $(id).val();
+			var arr_p = [];
+			for (i = 0; i < p.length; i++) {
+				arr_p.push(parseInt(`${p[i]}`.charCodeAt(0)) - 97)
+			}
+			return arr_p;
+		}
+		
+		// Submit
+		function funcSubmit() {
+			$('#submit').on('click', function() {
+				console.clear();
+				$(this).blur();
+				// Init matrix-A
+				var arr_matrixA = [];
+				$('#matrix-A .row[name="row-matrix"]').each(function (i, obj) {
+					var arr_row = [];
+					$(this).find('.matrix-col'). each(function (j, obj_2) {
+						var valCol = $(this).find('input').val();
+						arr_row.push(valCol);
+					})
+					arr_matrixA.push(arr_row);
+				});
+				console.log('Array Matrix A: \n' + arr_matrixA.map(function (i) { return i.join(" ") }).join("\n"));
+				// Init plaintext
+				arr_plaintext = funcPtoKeyCode('#plaintext');
+				// Change input matrix-B & update arr_plaintext
+				$('#matrix-B .row[name="row-matrix"]').each(function (i, obj) {
+					var newVal = 0;
+					if (arr_plaintext[i] != null) newVal = arr_plaintext[i];
+					else arr_plaintext[i] = 0;
+					$(this).find('input').val(newVal);
+				});
+				console.log('Array Matrix B: \n' + arr_plaintext.join("\n"));
+				
+				// Perkalian Array
+				// arr_matrixA X arr_plaintext
+				var arr_hasil = [];
+				$.each(arr_plaintext, function (key, val) {
+					// console.log(`key = ${key} val = ${val}`);
+					var hasilRow = 0;
+					$.each(arr_matrixA[key], function (key_2, val_2) {
+						var tempHasil = 0;
+						tempHasil = val*val_2;
+						hasilRow += tempHasil;
+					}); 
+					arr_hasil.push(hasilRow);
+				});
+				console.log(arr_hasil);
+				// Str to keyCode
+				// Separator hasil ribuan
+				var arr_kHasil = [];
+				var arr_sHasil = [];
+				$.each(arr_hasil, function (key, val) {
+					var charCode = (arr_hasil[key] % 25) + 97;
+					console.log(charCode)
+					arr_kHasil.push(String.fromCharCode(charCode));
+					arr_sHasil.push(arr_hasil[key].toLocaleString('id-ID'));
+				});
+
+				// Tampilkan hasil
+				$('#hasilEnkripsi').val(arr_kHasil.join(''))
+				$('#matrix-hasil .row[name="row-matrix"]').each(function (i, obj) {
+					$(this).find('.matrix-col input').val(arr_sHasil[i]);
+				});
+			});
+		}
+
+		// jQuery(function ($) {
+		// 	$.fn.hScroll = function (amount) {
+		// 		amount = amount || 120;
+		// 		$(this).bind("DOMMouseScroll mousewheel", function (event) {
+		// 			var oEvent = event.originalEvent,
+		// 				direction = oEvent.detail ? oEvent.detail * -amount : oEvent.wheelDelta,
+		// 				position = $(this).scrollLeft();
+		// 			position += direction > 0 ? -amount : amount;
+		// 			$(this).scrollLeft(position);
+		// 			event.preventDefault();
+		// 		})
+		// 	};
+		// });
+
+		// Opt
+		function funcScrollXGrab(id) {
+			var isDown = false;
+			var scrollX;
+			var scrollLeft;
+			var scroll = $(id);
+			// Mouse Up Function
+			scroll.mouseup(function () {
+				isDown = false;
+				scroll.removeClass("active");
+			});
+
+			// Mouse Leave Function
+			scroll.mouseleave(function () {
+				isDown = false;
+				scroll.removeClass("active");
+			});
+
+			// Mouse Down Function
+			scroll.mousedown(function (e) {
+				setTimeout(() => {
+					e.preventDefault();
+				}, 1);
+				isDown = true;
+				scroll.addClass("active");
+				scrollX = e.pageX - scroll.offset().left;
+				scrollLeft = scroll.scrollLeft();
+			});
+
+			// Mouse Move Function
+			scroll.mousemove(function (e) {
+				if (!isDown) return;
+				e.preventDefault();
+				var element = e.pageX - scroll.offset().left;
+				var scrolling = (element - scrollX) * 2;
+				scroll.scrollLeft(scrollLeft - scrolling);
+			});
+		}
+		function funcScrollXWheel(id) {
+			var posX = 0;
+			$(id).bind('mousewheel', function (e, delta) {
+				$('#dragSpace').stop();
+				if ($(this).is(':animated')) {
+				}
+				posX = delta * 500;
+				$('#dragSpace').animate({ scrollLeft: '-=' + posX }, 500);
+				// this.animate({ scrollLeft: '-='+(delta * 80) }, 100);
+				// this.scrollLeft -= (delta * 80);
+				e.preventDefault();
+			});
+		}
+		function funcMoveInputArrow() {
+			$.fn.putCursorAtEnd = function () {
+				return this.each(function () {
+					$(this).focus()
+					// If this function exists...
+					if (this.setSelectionRange) {
+						// ... then use it (Doesn't work in IE)
+						// Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
+						var len = $(this).val().length * 2;
+						this.setSelectionRange(len, len);
+					} else {
+						// ... otherwise replace the contents with itself
+						// (Doesn't work in Google Chrome)
+						$(this).val($(this).val());
+					}
+					// Scroll to the bottom, in case we're in a tall textarea
+					// (Necessary for Firefox and Google Chrome)
+					this.scrollTop = 999999;
+				});
+			};
+			
+			var name = '';
+			function _repeat(selector) {
+				setTimeout(() => {
+					selector.find('input').putCursorAtEnd();
+				}, 1);
+				name = selector.attr('name');
+			}
+			$('[name="input_jml"]').on('keydown', function (e) {
+				name = $(this).closest('.matrix-col').attr('name');
+				if (e.keyCode == 37) {
+					var selector = $(this).closest('.matrix-col').prev();
+					var tempVal = selector.find('input').val();
+					if (tempVal == null) {
+						selector = $(this).closest('.row').find('.matrix-col').last();
+					}
+					_repeat(selector)
+				} else if (e.keyCode == 39) {
+					var selector = $(this).closest('.matrix-col').next();
+					var tempVal = selector.find('input').val();
+					if (tempVal == null) {
+						selector = $(this).closest('.row').find('.matrix-col').first();
+					} 
+					_repeat(selector)
+				} else if (e.keyCode == 38) {
+					var selector = $(this).closest('.row[name="row-matrix"]').prev().find(`.matrix-col[name="${name}"]`);
+					var tempVal = selector.find('input').val();
+					if (tempVal == null) {
+						selector = $(this).closest('.matrix').find('.row[name="row-matrix"]').last().find(`.matrix-col[name="${name}"]`);
+					}
+					_repeat(selector)
+				} else if (e.keyCode == 40) {
+					var selector = $(this).closest('.row[name="row-matrix"]').next().find(`.matrix-col[name="${name}"]`);
+					var tempVal = selector.find('input').val();
+					if (tempVal == null) {
+						selector = $(this).closest('.matrix').find('.row[name="row-matrix"]').first().find(`.matrix-col[name="${name}"]`);
+					}
+					_repeat(selector)
+				}
+			})
+		}
+		function funcCenterElement(id) {
+			function _center() {
+				var element = $(`${id}`)
+				if (element.prop('scrollWidth') > element.width()) {
+					element.removeClass('justify-content-center')
+				} else {
+					element.addClass('justify-content-center')
+				}
+			}
+			_center();
+			$(window).on('resize', function () {
+				_center();
+			});
+		}
+
+		$(document).ready(function () {
+			funcBtnOperator(); 
+			funcSubmit();
+
+			// $('.overflow-col').hScroll(40);
+			funcScrollXGrab("#dragSpace");
+			// funcScrollXWheel("#dragSpace");
+			
+			funcCenterElement("#dragSpace");
+			funcMoveInputArrow();
+		});
+
+		// TweenMax.set("body", { overflowY: 'scroll' });
+
+		// var scrollSpeed = 1; // half of user scroll
+		// var scrollHeight = 10000;
+
+		// TweenMax.set(".testing", { height: scrollHeight, overflowY: 'scroll' });
+
+		// $(document).on("scroll", function () {
+		// 	const pixels = $(document).scrollTop();
+		// 	TweenMax.to('#wrapperBoxes', 1, { x: -0.5 * pixels })
+
+		// 	//  '0.5' = half speed of user scroll
+		// 	console.log(pixels);
+		// })
+	</script>
+
+</body>
+
+</html>
