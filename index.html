@@ -578,7 +578,7 @@
 					var hasilRow = 0;
 					$.each(arr_matrixA[key], function (key_2, val_2) {
 						var tempHasil = 0;
-						tempHasil = val*val_2;
+						tempHasil = arr_plaintext[key_2]*val_2;
 						hasilRow += tempHasil;
 					}); 
 					arr_hasil.push(hasilRow);
